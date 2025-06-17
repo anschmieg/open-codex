@@ -276,7 +276,6 @@ if (cli.flags.config) {
 // ---------------------------------------------------------------------------
 
 const fullContextMode = Boolean(cli.flags.fullContext);
-const provider = cli.flags.provider;
 
 let config = loadConfig(undefined, undefined, {
   cwd: process.cwd(),

@@ -10,7 +10,7 @@ import type { FullAutoErrorMode } from "./auto-approval-mode.js";
 import type { ReasoningEffort } from "openai/resources.mjs";
 
 import { AutoApprovalMode } from "./auto-approval-mode.js";
-import { log } from "./logger/log.js";
+import { log, isLoggingEnabled } from "./logger/log.js";
 import { providers } from "./providers.js";
 import { config as loadDotenv } from "dotenv";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
@@ -589,6 +589,7 @@ export const loadConfig = (
       ? storedConfig.baseURL.trim()
       : undefined;
 
+  const storedProvider = storedConfig.provider;
   const providerOrDefault = options.provider ?? DEFAULT_PROVIDER;
 
   const _derivedModels = storedProvider

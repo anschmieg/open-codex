@@ -778,8 +778,6 @@ export class AgentLoop {
           stageItem(item as ResponseItem);
         }
         // Send request to OpenAI with retry on timeout.
-        let stream;
-
         // Send request to OpenAI with retry on timeout
         let stream: Stream<ChatCompletionChunk> | undefined = undefined;
         // Retry loop for transient errors. Up to MAX_RETRIES attempts.

@@ -57,6 +57,7 @@ export default function TerminalChatInput({
   active,
   thinkingSeconds,
   items = [],
+  setLastResponseId,
 }: {
   isNew: boolean;
   loading: boolean;
@@ -84,6 +85,7 @@ export default function TerminalChatInput({
   thinkingSeconds: number;
   // New: current conversation items so we can include them in bug reports
   items?: Array<ResponseItem>;
+  setLastResponseId: (id: string) => void;
 }): React.ReactElement {
   // Slash command suggestion index
   const [selectedSlashSuggestion, setSelectedSlashSuggestion] =
@@ -729,6 +731,7 @@ export default function TerminalChatInput({
       app,
       setHistory,
       setHistoryIndex,
+      setLastResponseId,
       openOverlay,
       openApprovalOverlay,
       openModelOverlay,
