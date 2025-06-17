@@ -2,10 +2,7 @@ import type { MultilineTextEditorHandle } from "./multiline-editor";
 import type { ReviewDecision } from "../../utils/agent/review.js";
 import type { FileSystemSuggestion } from "../../utils/file-system-suggestions.js";
 import type { HistoryEntry } from "../../utils/storage/command-history.js";
-import type {
-  ResponseInputItem,
-  ResponseItem,
-} from "openai/resources/responses/responses.mjs";
+import type { ResponseItem } from "openai/resources/responses/responses.mjs";
 
 import MultilineTextEditor from "./multiline-editor";
 import { TerminalChatCommandReview } from "./terminal-chat-command-review.js";
@@ -46,7 +43,7 @@ export default function TerminalChatInput({
   confirmationPrompt,
   explanation,
   submitConfirmation,
-  setPrevItems,
+  _setPrevItems,
   setItems,
   contextLeftPercent,
   openOverlay,
@@ -70,7 +67,7 @@ export default function TerminalChatInput({
     decision: ReviewDecision,
     customDenyMessage?: string,
   ) => void;
-  setPrevItems: (prevItems: Array<ChatCompletionMessageParam>) => void;
+  _setPrevItems: (prevItems: Array<ChatCompletionMessageParam>) => void;
   setItems: React.Dispatch<
     React.SetStateAction<Array<ChatCompletionMessageParam>>
   >;
@@ -728,7 +725,6 @@ export default function TerminalChatInput({
     [
       setInput,
       submitInput,
-      setPrevItems,
       setItems,
       app,
       setHistory,

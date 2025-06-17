@@ -2,9 +2,7 @@ import type { OverlayModeType } from "./terminal-chat";
 import type { TerminalRendererOptions } from "marked-terminal";
 import type {
   ResponseFunctionToolCallItem,
-  ResponseFunctionToolCallOutputItem,
   ResponseInputMessageItem,
-  ResponseItem,
   ResponseOutputMessage,
   ResponseReasoningItem,
 } from "openai/resources/responses/responses";
@@ -204,12 +202,11 @@ function TerminalChatResponseToolCall({
   );
 }
 
-function TerminalChatResponseToolCallOutput({
+function _TerminalChatResponseToolCallOutput({
   content,
   fullStdout,
 }: {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  message: ResponseFunctionToolCallOutputItem | any;
+  content: string;
   fullStdout: boolean;
 }) {
   const { output, metadata } = parseToolCallOutput(content);

@@ -1,7 +1,6 @@
 import type { ApprovalPolicy } from "./approvals";
 import type { AppConfig } from "./utils/config";
 import type { TerminalChatSession } from "./utils/session.js";
-import type { ResponseItem } from "openai/resources/responses/responses";
 
 import TerminalChat from "./components/chat/terminal-chat";
 import TerminalChatPastRollout from "./components/chat/terminal-chat-past-rollout";

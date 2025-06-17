@@ -1,5 +1,3 @@
-import type { AppConfig } from "src/utils/config.js";
-
 import TypeaheadOverlay from "./typeahead-overlay.js";
 import {
   getAvailableModels,
@@ -31,7 +29,6 @@ export default function ModelOverlay({
   providers = {},
   currentProvider = "openai",
   hasLastResponse,
-  config,
   onSelect,
   onSelectProvider,
   onExit,

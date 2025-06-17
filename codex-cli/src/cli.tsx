@@ -44,7 +44,6 @@ import {
 import { createInputItem } from "./utils/input-utils";
 import { initLogger } from "./utils/logger/log";
 import { isModelSupportedForResponses } from "./utils/model-utils.js";
-import { parseToolCall } from "./utils/parsers";
 import { onExit, setInkRenderer } from "./utils/terminal";
 import { spawnSync } from "child_process";
 import fs from "fs";
@@ -600,24 +599,24 @@ function formatChatCompletionMessageParamForQuietMode(
     typeof item.content === "string"
       ? item.content
       : Array.isArray(item.content)
-      ? item.content
-          .map((c) => {
-            if (c.type === "text") {
-              return c.text;
-            }
-            if (c.type === "image_url") {
-              return "<Image>";
-            }
-            if (c.type === "file") {
-              return "File";
-            }
-            if (c.type === "refusal") {
-              return c.refusal;
-            }
-            return "?";
-          })
-          .join(" ")
-      : "";
+        ? item.content
+            .map((c) => {
+              if (c.type === "text") {
+                return c.text;
+              }
+              if (c.type === "image_url") {
+                return "<Image>";
+              }
+              if (c.type === "file") {
+                return "File";
+              }
+              if (c.type === "refusal") {
+                return c.refusal;
+              }
+              return "?";
+            })
+            .join(" ")
+        : "";
 
   if (content) {
     if (item.role === "tool" && !("tool_calls" in item)) {

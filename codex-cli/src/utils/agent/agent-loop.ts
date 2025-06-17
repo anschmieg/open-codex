@@ -3,7 +3,6 @@ import type { ApplyPatchCommand, ApprovalPolicy } from "../../approvals.js";
 import type { AppConfig } from "../config.js";
 import type { ResponseEvent } from "../responses.js";
 import type {
-  ResponseFunctionToolCall,
   ResponseInputItem,
   ResponseItem,
   ResponseCreateParams,
@@ -539,7 +538,7 @@ export class AgentLoop {
 
   public async run(
     input: Array<ChatCompletionMessageParam>,
-    prevItems: Array<ChatCompletionMessageParam> = [],
+    _prevItems: Array<ChatCompletionMessageParam> = [],
   ): Promise<void> {
     // ---------------------------------------------------------------------
     // Top‑level error wrapper so that known transient network issues like

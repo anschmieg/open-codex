@@ -35,7 +35,11 @@ export function approximateTokensUsed(
           }
           // images and other content types are ignored (0 chars)
         }
+        break;
       }
+      default:
+        // Handle other types or ignore
+        break;
     }
     if ("tool_calls" in item && item.tool_calls) {
       for (const toolCall of item.tool_calls) {

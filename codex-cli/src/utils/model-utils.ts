@@ -54,7 +54,7 @@ export async function getAvailableModels(
 export async function isModelSupportedForResponses(
   provider: string,
   model: string | undefined | null,
-  config: AppConfig,
+  _config: AppConfig,
 ): Promise<boolean> {
   if (
     typeof model !== "string" ||

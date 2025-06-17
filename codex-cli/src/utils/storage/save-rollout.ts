@@ -1,6 +1,5 @@
 import type { ResponseItem } from "openai/resources/responses/responses";
 
-import { loadConfig } from "../config";
 import { log } from "../logger/log.js";
 import fs from "fs/promises";
 import os from "os";

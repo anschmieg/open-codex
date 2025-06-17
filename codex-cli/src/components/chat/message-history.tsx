@@ -1,6 +1,5 @@
 import type { TerminalHeaderProps } from "./terminal-header.js";
 import type { GroupedResponseItem } from "./use-message-grouping.js";
-import type { ResponseItem } from "openai/resources/responses/responses.mjs";
 import type { FileOpenerScheme } from "src/utils/config.js";
 
 import TerminalChatResponseItem from "./terminal-chat-response-item.js";

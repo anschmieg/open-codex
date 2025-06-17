@@ -80,7 +80,7 @@ if (!process.env["OPENAI_API_KEY"]) {
   }
 }
 
-function getAPIKeyForProviderOrExit(provider: string): string {
+function _getAPIKeyForProviderOrExit(provider: string): string {
   switch (provider) {
     case "openai":
       if (process.env["OPENAI_API_KEY"]) {
@@ -119,7 +119,7 @@ function getAPIKeyForProviderOrExit(provider: string): string {
   }
 }
 
-function baseURLForProvider(provider: string): string {
+function _baseURLForProvider(provider: string): string {
   switch (provider) {
     case "openai":
       return "https://api.openai.com/v1";
@@ -584,30 +584,18 @@ export const loadConfig = (
       ? storedConfig.model.trim()
       : undefined;
 
-  const storedBaseURL =
+  const _storedBaseURL =
     storedConfig.baseURL && storedConfig.baseURL.trim() !== ""
       ? storedConfig.baseURL.trim()
       : undefined;
 
   const providerOrDefault = options.provider ?? DEFAULT_PROVIDER;
 
-  const derivedBaseURL = storedProvider
-    ? baseURLForProvider(storedProvider)
-    : storedBaseURL ?? baseURLForProvider(providerOrDefault);
-
-  const derivedModels = storedProvider
+  const _derivedModels = storedProvider
     ? defaultModelsForProvider(storedProvider)
     : defaultModelsForProvider(providerOrDefault);
 
-  const derivedModel =
-    storedModel ||
-    (options.isFullContext
-      ? derivedModels?.fullContext
-      : derivedModels?.agentic);
-
-  const derivedProvider = storedProvider ?? providerOrDefault;
-  const apiKeyForProvider =
-    options.forceApiKeyForTest ?? getAPIKeyForProviderOrExit(derivedProvider);
+  const _derivedProvider = storedProvider ?? providerOrDefault;
 
   const config: AppConfig = {
     model:
