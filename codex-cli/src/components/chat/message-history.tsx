@@ -1,6 +1,7 @@
 import type { TerminalHeaderProps } from "./terminal-header.js";
 import type { GroupedResponseItem } from "./use-message-grouping.js";
-import type { ChatCompletionMessageParam } from "openai/resources/chat/completions.mjs";
+import type { ResponseItem } from "openai/resources/responses/responses.mjs";
+import type { FileOpenerScheme } from "src/utils/config.js";
 
 import TerminalChatResponseItem from "./terminal-chat-response-item.js";
 import TerminalHeader from "./terminal-header.js";
@@ -22,11 +23,13 @@ type MessageHistoryProps = {
   confirmationPrompt: React.ReactNode;
   loading: boolean;
   headerProps: TerminalHeaderProps;
+  fileOpener: FileOpenerScheme | undefined;
 };
 
 const MessageHistory: React.FC<MessageHistoryProps> = ({
   batch,
   headerProps,
+  fileOpener,
 }) => {
   const messages = batch.map(({ item }) => item!);
 
@@ -57,7 +60,10 @@ const MessageHistory: React.FC<MessageHistoryProps> = ({
               marginLeft={message.role === "user" ? 0 : 4}
               marginTop={message.role === "user" ? 0 : 1}
             >
-              <TerminalChatResponseItem item={message} />
+              <TerminalChatResponseItem
+                item={message}
+                fileOpener={fileOpener}
+              />
             </Box>
           );
         }}

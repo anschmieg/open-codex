@@ -112,10 +112,11 @@ describe("thinking time counter", () => {
       model: "any",
       instructions: "",
       approvalPolicy: { mode: "auto" } as any,
+      additionalWritableRoots: [],
       onItem: (i) => items.push(i),
       onLoading: () => {},
-      getCommandConfirmation: async () => ({ review: "yes" } as any),
-      onReset: () => {},
+      getCommandConfirmation: async () => ({ review: "yes" }) as any,
+      onLastResponseId: () => {},
     });
 
     const userMsg = {

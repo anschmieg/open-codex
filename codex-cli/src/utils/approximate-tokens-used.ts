@@ -19,16 +19,21 @@ export function approximateTokensUsed(
   let charCount = 0;
 
   for (const item of items) {
-    if (typeof item.content === "string") {
-      charCount += item.content.length;
-    }
-    if (Array.isArray(item.content)) {
-      for (const part of item.content) {
-        if (part.type === "text") {
-          charCount += part.text.length;
+    switch (item.type) {
+      case "message": {
+        if (item.role !== "user" && item.role !== "assistant") {
+          continue;
         }
-        if (part.type === "refusal") {
-          charCount += part.refusal.length;
+
+        for (const c of item.content) {
+          if (c.type === "input_text" || c.type === "output_text") {
+            charCount += c.text.length;
+          } else if (c.type === "refusal") {
+            charCount += c.refusal.length;
+          } else if (c.type === "input_file") {
+            charCount += c.filename?.length ?? 0;
+          }
+          // images and other content types are ignored (0 chars)
         }
       }
     }

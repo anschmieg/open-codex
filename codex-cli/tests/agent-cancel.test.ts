@@ -56,7 +56,7 @@ vi.mock("../src/approvals.js", () => {
     __esModule: true,
     alwaysApprovedCommands: new Set<string>(),
     canAutoApprove: () =>
-      ({ type: "auto-approve", runInSandbox: false } as any),
+      ({ type: "auto-approve", runInSandbox: false }) as any,
     isSafeCommand: () => null,
   };
 });
@@ -93,14 +93,15 @@ describe("Agent cancellation", () => {
     const agent = new AgentLoop({
       model: "any",
       instructions: "",
-      config: { model: "any", instructions: "" },
+      config: { model: "any", instructions: "", notify: false },
       approvalPolicy: { mode: "auto" } as any,
+      additionalWritableRoots: [],
       onItem: (item) => {
         received.push(item);
       },
       onLoading: () => {},
-      getCommandConfirmation: async () => ({ review: "yes" } as any),
-      onReset: () => {},
+      getCommandConfirmation: async () => ({ review: "yes" }) as any,
+      onLastResponseId: () => {},
     });
 
     const userMsg = [
@@ -139,14 +140,15 @@ describe("Agent cancellation", () => {
     const received: Array<any> = [];
 
     const agent = new AgentLoop({
+      additionalWritableRoots: [],
       model: "any",
       instructions: "",
-      config: { model: "any", instructions: "" },
+      config: { model: "any", instructions: "", notify: false },
       approvalPolicy: { mode: "auto" } as any,
       onItem: (item) => received.push(item),
       onLoading: () => {},
-      getCommandConfirmation: async () => ({ review: "yes" } as any),
-      onReset: () => {},
+      getCommandConfirmation: async () => ({ review: "yes" }) as any,
+      onLastResponseId: () => {},
     });
 
     const userMsg = [

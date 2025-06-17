@@ -42,10 +42,10 @@ describe("model-utils – offline resilience", () => {
     vi.resetModules();
     const { isModelSupported } = await import("../src/utils/model-utils.js");
 
-    const supported = await isModelSupported("o4-mini", {
-      model: "",
-      instructions: "",
-    });
+    const supported = await isModelSupportedForResponses(
+      "openai",
+      "codex-mini-latest",
+    );
     expect(supported).toBe(true);
   });
 
@@ -62,11 +62,11 @@ describe("model-utils – offline resilience", () => {
     vi.resetModules();
     const { isModelSupported } = await import("../src/utils/model-utils.js");
 
-    // Should resolve true despite the network failure
-    const supported = await isModelSupported("o4-mini", {
-      model: "",
-      instructions: "",
-    });
+    // Should resolve true despite the network failure.
+    const supported = await isModelSupportedForResponses(
+      "openai",
+      "some-model",
+    );
     expect(supported).toBe(true);
   });
 });

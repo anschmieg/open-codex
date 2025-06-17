@@ -36,7 +36,10 @@ function assistantMessage(text: string) {
 describe("TerminalChatResponseItem", () => {
   it("renders a user message", () => {
     const { lastFrameStripped } = renderTui(
-      <TerminalChatResponseItem item={userMessage("Hello world")} />,
+      <TerminalChatResponseItem
+        item={userMessage("Hello world")}
+        fileOpener={undefined}
+      />,
     );
 
     const frame = lastFrameStripped();
@@ -46,7 +49,10 @@ describe("TerminalChatResponseItem", () => {
 
   it("renders an assistant message", () => {
     const { lastFrameStripped } = renderTui(
-      <TerminalChatResponseItem item={assistantMessage("Sure thing")} />,
+      <TerminalChatResponseItem
+        item={assistantMessage("Sure thing")}
+        fileOpener={undefined}
+      />,
     );
 
     const frame = lastFrameStripped();

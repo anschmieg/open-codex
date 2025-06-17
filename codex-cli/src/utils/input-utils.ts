@@ -21,15 +21,14 @@ export async function createInputItem(
       /* eslint-enable no-await-in-loop */
       const encoded = binary.toString("base64");
       const mime = kind?.mime ?? "application/octet-stream";
-      content.push({
-        type: "image_url",
-        image_url: {
-          url: `data:${mime};base64,${encoded}`,
-        },
+      inputItem.content.push({
+        type: "input_image",
+        detail: "auto",
+        image_url: `data:${mime};base64,${encoded}`,
       });
     } catch (err) {
-      content.push({
-        type: "text",
+      inputItem.content.push({
+        type: "input_text",
         text: `[missing image: ${path.basename(filePath)}]`,
       });
     }
